@@ -1,0 +1,64 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="onDismiss()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'EDIT_PROFILE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #profileForm="ngForm" novalidate>
+
+    <ion-label position="stacked" color="medium">
+      <span class="bold">{{ 'NAME' | translate }}</span>
+    </ion-label>
+    <ion-item class="ion-margin-vertical" lines="none" color="light">
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <div *ngIf="!user?.attributes.authData">
+      <ion-label position="stacked" color="medium">
+        <span class="bold">{{ 'USERNAME' | translate }}</span>
+      </ion-label>
+      <ion-item class="ion-margin-vertical" lines="none" color="light">
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+    </div>
+
+    <ion-label position="stacked" color="medium">
+      <span class="bold">{{ 'EMAIL' | translate }}</span>
+    </ion-label>
+    <ion-item class="ion-margin-vertical" lines="none" color="light">
+      <ion-input type="email" formControlName="email"
+        (keyup.enter)="profileForm.ngSubmit.emit()">
+      </ion-input>
+    </ion-item>
+
+    <ion-label position="stacked" color="medium">
+      <span class="bold">{{ 'UPLOAD_PICTURE' | translate }}</span>
+    </ion-label>
+
+    <div class="ion-margin-top">
+      <app-upload-box (onFileUploaded)="onFileUploaded($event)">
+      </app-upload-box>
+    </div>
+
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="ion-text-center">
+      <ion-button type="submit" shape="round" color="primary"
+        [disabled]="isLoadingViewVisible"
+        (click)="profileForm.ngSubmit.emit()">
+        <ion-spinner *ngIf="isLoadingViewVisible"></ion-spinner>
+        <span *ngIf="!isLoadingViewVisible">{{ 'SUBMIT' | translate }}</span>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

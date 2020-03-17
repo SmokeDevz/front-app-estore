@@ -1,0 +1,176 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onDismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="center" *ngIf="!showLoginForm && !showSignUpForm">
+    <div class="ion-text-center">
+      <h3>{{ 'LOGIN' | translate }}</h3>
+      <p [innerHTML]="'LOGIN_INFO' | translate"></p>
+      <ion-row>
+        <ion-col>
+          <ion-button color="primary" expand="block" fill="outline" (click)="onLoginButtonTouched()">
+            {{ 'LOGIN' | translate }}
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="primary" expand="block" (click)="onSignUpButtonTouched()">
+            {{ 'SIGN_UP' | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <div *ngIf="showLoginForm">
+
+    <div class="ion-text-center">
+      <img width="60" src="./assets/imgs/icon.png">
+    </div>
+
+    <form class="ion-padding" [formGroup]="form" #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
+
+      <ion-item color="light" lines="none" class="ion-margin-bottom">
+        <ion-input type="text" formControlName="username" [placeholder]="'USERNAME' | translate">
+        </ion-input>
+      </ion-item>
+
+      <ion-item color="light" lines="none" class="ion-margin-bottom">
+        <ion-input type="password" formControlName="password"
+        (keyup.enter)="loginForm.ngSubmit.emit()"
+        [placeholder]="'PASSWORD' | translate">
+        </ion-input>
+      </ion-item>
+
+      <ion-row class="ion-margin-top ion-justify-content-center">
+        <ion-col size-xs="8" size-md="6" class="ion-text-center">
+          <ion-button class="ion-margin-vertical" strong type="submit" color="primary" expand="block" shape="round"
+            [disabled]="isLoadingByFacebook || isLoadingByUsername || isLoadingByGoogle">
+            <ion-spinner color="light" *ngIf="isLoadingByUsername"></ion-spinner>
+            <span *ngIf="!isLoadingByUsername">{{ 'LOGIN' | translate }}</span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-xs="6" size-md="4">
+          <ion-button type="button" color="fb" expand="block" shape="round"
+            [disabled]="isLoadingByFacebook || isLoadingByUsername || isLoadingByGoogle"
+            (click)="onFacebookButtonTouched()">
+            <ion-icon slot="start" name="logo-facebook" color="light"></ion-icon>
+            <ion-spinner color="light" *ngIf="isLoadingByFacebook"></ion-spinner>
+            <span *ngIf="!isLoadingByFacebook">{{ 'FACEBOOK' | translate }}</span>
+          </ion-button>
+        </ion-col>
+  
+        <ion-col size-xs="6" size-md="4">
+          <ion-button type="button" color="google" expand="block" shape="round"
+            [disabled]="isLoadingByFacebook || isLoadingByUsername || isLoadingByGoogle"
+            (click)="onGoogleButtonTouched()">
+            <ion-icon slot="start" name="logo-google" color="light"></ion-icon>
+            <ion-spinner color="light" *ngIf="isLoadingByGoogle"></ion-spinner>
+            <span *ngIf="!isLoadingByGoogle">{{ 'GOOGLE_LOGIN' | translate }}</span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+    <ion-row>
+      <ion-col size="6" class="ion-text-start">
+        <ion-text color="dark">
+          <p class="bold" tappable (click)="onForgotPasswordButtonTouched()">
+            {{ 'FORGOT_PASSWORD' | translate }}
+          </p>
+        </ion-text>
+      </ion-col>
+      <ion-col size="6" class="ion-text-end">
+        <ion-text color="primary">
+          <p class="bold" (click)="onSignUpButtonTouched()">
+            {{ 'NO_ACCOUNT_YET_CREATE_ONE' | translate }}
+          </p>
+        </ion-text>
+
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <div *ngIf="showSignUpForm">
+
+    <div class="ion-text-center">
+      <img width="60" src="./assets/imgs/icon.png">
+    </div>
+
+    <form class="ion-padding" [formGroup]="form" #signupForm="ngForm" (ngSubmit)="onSignUp()" novalidate>
+
+      <ion-item color="light" lines="none" class="ion-margin-bottom">
+        <ion-input type="text" formControlName="name" [placeholder]="'NAME' | translate">
+        </ion-input>
+      </ion-item>
+
+      <ion-item color="light" lines="none" class="ion-margin-bottom">
+        <ion-input type="text" formControlName="username" [placeholder]="'USERNAME' | translate">
+        </ion-input>
+      </ion-item>
+
+      <ion-item color="light" lines="none" class="ion-margin-bottom">
+        <ion-input type="email" formControlName="email" [placeholder]="'EMAIL' | translate"></ion-input>
+      </ion-item>
+
+      <ion-text color="dark">
+        <p>
+          <small>{{ 'EMAIL_FIELD_HELP' | translate }}</small>
+        </p>
+      </ion-text>
+
+      <ion-item color="light" lines="none" class="ion-margin-bottom">
+        <ion-input [type]="!showPass ? 'password' : 'text' " formControlName="password"
+        (keyup.enter)="signupForm.ngSubmit.emit()"
+        [placeholder]="'PASSWORD' | translate">
+        </ion-input>
+        <ion-button *ngIf="!showPass" fill="clear" color="dark" type="button" slot="end" (click)="this.showPass = !this.showPass;">
+          <ion-icon name="eye-off"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="showPass" fill="clear" color="dark" type="button" slot="end" (click)="this.showPass = !this.showPass;">
+          <ion-icon name="eye"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-text color="dark">
+        <p>
+          <small>{{ 'PASSWORD_VALIDATION_MSG' | translate }}</small>
+        </p>
+      </ion-text>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-xs="8" size-md="6" class="ion-text-center">
+          <ion-button class="ion-margin-vertical" strong type="submit" color="primary" expand="block" shape="round"
+          [disabled]="isSignUpLoading">
+          <ion-spinner color="light" *ngIf="isSignUpLoading"></ion-spinner>
+          <span *ngIf="!isSignUpLoading">{{ 'SIGN_UP' | translate }}</span>
+        </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6" class="ion-text-center">
+          <ion-button type="button" fill="clear" expand="block" color="dark"
+            (click)="onLoginButtonTouched()">
+            {{ 'BACK_TO_LOGIN' | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+</ion-content>

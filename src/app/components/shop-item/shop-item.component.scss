@@ -1,0 +1,28 @@
+ion-card {
+
+  ion-card-content {
+    padding: 4px 6px !important;
+  }
+
+  .image-container {
+    position: relative;
+    padding: 16px;
+
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    span {
+      background: #ccc;
+      padding: 3px;
+      color: #333;
+      font-size: 12px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 10px;
+      left: 16px;
+    }
+  }
+}

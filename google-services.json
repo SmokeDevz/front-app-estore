@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "123178578776",
+    "firebase_url": "https://estore-270805.firebaseio.com",
+    "project_id": "estore-270805",
+    "storage_bucket": "estore-270805.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123178578776:android:b7c18594951f0a206c6b2d",
+        "android_client_info": {
+          "package_name": "com.quanlabs.ionshopv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123178578776-mrfh1e086p8avpdje8d83hpe2itofuah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeupnfS5yShbhuLPwByegm_JS2Gi1oaqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123178578776-c6nc8qi04ijc84u877hjvob2rdtlk5ad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

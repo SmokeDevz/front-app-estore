@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar fixed>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content scrollEvents="true" #container>
+  
+    <ion-refresher slot="fixed" (ionRefresh)="loadData($event)">
+      <ion-refresher-content pullingText="{{ 'PULL_TO_REFRESH' | translate }}" refreshingText="{{ 'REFRESHING' | translate }}">
+      </ion-refresher-content>
+    </ion-refresher>
+  
+    <ion-grid fixed>
+  
+      <empty-view *ngIf="isErrorViewVisible" icon="alert-circle-outline" [text]="'ERROR_DATA' | translate">
+      </empty-view>
+  
+      <empty-view *ngIf="isEmptyViewVisible" icon="alert-circle-outline" [text]="'EMPTY_DATA' | translate">
+      </empty-view>
+  
+      <ion-row class="ion-margin-vertical" *ngIf="isContentViewVisible" [@staggerIn]="subcategories.length">
+        <ion-col size-xs="3" class="ion-text-center">
+          <div class="circle dark-bg"
+            [routerLink]="['../items']"
+            [queryParams]="{ cat: params?.category?.id }">
+            <div class="circle-inner">
+              <p class="bold link">{{ 'VIEW_ALL' | translate }}</p>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size-xs="3" class="ion-text-center"
+          [routerLink]="['../items']"
+          [queryParams]="{ subcat: category.id }"
+          *ngFor="let category of subcategories;trackBy:trackByFn">
+          <div class="circle bg-img"
+            defaultImage="./assets/imgs/placeholder.png"
+            [lazyLoad]="replaceUrl(category.imageThumb?.url())"
+            [customObservable]="loadAndScroll"></div>
+          <ion-text color="dark">
+            <p class="link margin-6 text-medium">
+              {{ category.name }}
+            </p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+  
+      <section *ngIf="isLoadingViewVisible">
+        <ion-row class="ion-nowrap text-center">
+          <ion-col size-xs="4" size-sm="6" size-md="6" size-lg="2" *ngFor="let item of skeletonArray">
+            <ngx-skeleton-loader count="1" appearance="circle" [theme]="{ width: '60px', height: '60px' }">
+            </ngx-skeleton-loader>
+          </ion-col>
+        </ion-row>
+      </section>
+  
+    </ion-grid>
+  
+  </ion-content>
