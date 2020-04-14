@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.quanlabs.ionshopv2" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>IonShop</name>
+    <name>Supermercado Valeria</name>
     <description>Ionic 5 Starter for ecommerce based apps</description>
     <author email="info@quanlabs.com" href="https://quanlabs.com/">Quanlabs</author>
     <content src="index.html" />

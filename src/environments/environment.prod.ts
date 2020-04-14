@@ -1,14 +1,14 @@
 export const environment = {
     production: false,
     serverUrl: 'http://35.224.206.247:1337/api/',
-    appUrl: ' https://estore-lv.firebaseapp.com',
-    appImageUrl: ' https://estore-lv.firebaseapp.com/assets/imgs/ionshop.png',
+    appUrl: 'http://localhost:8100',
+    appImageUrl: 'http://localhost:8100/assets/imgs/ionshop.png',
     appId: 'JrWy7sUKLL',
     fbId: 'FACEBOOK_APP_ID',
     stripePublicKey: 'pk_test_h4Wp1dmmt5ijali0bJxbrjnv00OO5351FV',
     androidHeaderColor: '#5D67D4',
     defaultLang: 'en',
-    googleClientId: '602494379299-k7n2m5noeodaa7hu0ul82sgsidiucn8s.apps.googleusercontent.com',
+    googleClientId: '123178578776-c6nc8qi04ijc84u877hjvob2rdtlk5ad.apps.googleusercontent.com',
     currency: {
         code: 'CLP',
         display: 'symbol',

@@ -1,7 +1,7 @@
 <ion-card button class="full-width no-shadow no-radius ion-no-margin" >
 
   <div class="image-container">
-    <img offset="300" src="./assets/imgs/placeholder.png"
+    <img offset="300" src="./assets/imgs/placeholder.jpg"
       [customObservable]="scrollObservable"
       [lazyLoad]="item.featuredImageThumb?.url()" />
     <span *ngIf="item.salePrice">
@@ -15,7 +15,7 @@
       <p class="link ellipsis text-medium">{{ item.name }}</p>
     </ion-text>
 
-    <bar-rating [rate]="item.ratingAvg" [readOnly]="true" [max]="5" [theme]="'stars'"></bar-rating>
+   <!-- <bar-rating [rate]="item.ratingAvg" [readOnly]="true" [max]="5" [theme]="'stars'"></bar-rating>-->
 
     <ion-text color="dark">
       <p class="ion-no-margin" *ngIf="item.salePrice">

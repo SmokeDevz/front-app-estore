@@ -87,7 +87,7 @@
                   <ion-slide *ngFor="let photo of item?.images">
                     <div class="slide bg-img" [attr.imageSrc]="photo.url()" [attr.thumbSrc]="photo.url()"
                       [lazyLoad]="photo.url()" [customObservable]="slidesObservable"
-                      defaultImage="./assets/imgs/placeholder-large.jpg">
+                      defaultImage="./assets/imgs/placeholder.jpg">
                     </div>
                   </ion-slide>
                 </ion-slides>
@@ -97,13 +97,13 @@
             <ion-col size-xs="12" size-lg="6">
               <h4>{{ item?.name }}</h4>
               <p *ngIf="item?.salePrice">
-                <span class="text-large" class="bold">{{ item?.salePrice | currencyGlobal }}&nbsp;</span>
+                <span class="text-large" class="bold">${{ item?.salePrice }}&nbsp;</span>
                 <ion-text color="medium">
-                  <s class=" text-small bold">{{ item?.price | currencyGlobal }}</s>
+                  <s class=" text-small bold">${{ item?.price }}</s>
                 </ion-text>
               </p>
               <p class="text-large bold" *ngIf="!item?.salePrice">
-                {{ item?.price | currencyGlobal }}
+                ${{ item?.price }}
               </p>
               <bar-rating [rate]="item.ratingAvg" [readOnly]="true" [max]="5" [theme]="'stars'"></bar-rating>
 
