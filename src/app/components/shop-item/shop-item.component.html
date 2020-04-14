@@ -1,9 +1,9 @@
-<ion-card button class="full-width no-shadow no-radius ion-no-margin">
+<ion-card button class="full-width no-shadow no-radius ion-no-margin" >
 
   <div class="image-container">
     <img offset="300" src="./assets/imgs/placeholder.png"
       [customObservable]="scrollObservable"
-      [lazyLoad]="replaceUrl(item.featuredImageThumb?.url())" />
+      [lazyLoad]="item.featuredImageThumb?.url()" />
     <span *ngIf="item.salePrice">
       {{ item.discount | percent }} {{ 'OFF' | translate }}
     </span>
@@ -19,17 +19,17 @@
 
     <ion-text color="dark">
       <p class="ion-no-margin" *ngIf="item.salePrice">
-        <span class="bold">{{ item.salePrice | currencyGlobal }}&nbsp;</span>
+        <span class="bold">${{ item.salePrice  }}&nbsp;</span>
         <small>
           <ion-text color="medium">
             <s class="bold">
-              {{ item.price | currencyGlobal }}
+              ${{ item.price }}
             </s>
           </ion-text>
         </small>
       </p>
       <p class="bold ion-no-margin" *ngIf="!item.salePrice">
-        {{ item.price | currencyGlobal }}
+        ${{ item.price  }}
       </p>
     </ion-text>
 

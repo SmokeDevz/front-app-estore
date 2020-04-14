@@ -371,8 +371,14 @@ export class HomePage extends BasePage {
     replaceUrl(never: any) {
         console.log(never);
         let urlCacheString = never;
-        const cacheUrlString = urlCacheString.replace('http://localhost:1337/api/', environment.serverUrl)
-        console.log(cacheUrlString);
-        return cacheUrlString;
+        if (urlCacheString) {
+            let cacheUrlString = urlCacheString.replace('http://localhost:1337/api/', environment.serverUrl)
+            console.log(cacheUrlString);
+            return cacheUrlString;
+
+        } else {
+            return '';
+        }
+
     }
 }
